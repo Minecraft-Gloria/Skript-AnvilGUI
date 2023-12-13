@@ -1,3 +1,14 @@
+# Gloria Custom Syntax
+```
+[a] new anvil gui with id %string% with data %object%
+```
+```
+anvil gui click (on|of|in|at) %string%
+```
+```
+anvil gui close (on|of|in|at) %string%
+```
+
 
 # Skript-AnvilGUI ![Downloads](https://img.shields.io/github/downloads/DereWah/Skript-AnvilGUI/total)
 
