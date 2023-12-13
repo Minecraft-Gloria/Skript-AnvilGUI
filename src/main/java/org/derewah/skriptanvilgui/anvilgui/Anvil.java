@@ -1,5 +1,7 @@
 package org.derewah.skriptanvilgui.anvilgui;
 
+import lombok.Getter;
+import me.marquez.variablelink.api.data.BetterVariableMap;
 import net.wesjd.anvilgui.AnvilGUI;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -22,8 +24,18 @@ public class Anvil {
 
     private ItemStack itemOutput;
 
+    @Getter
+    private String id;
+    @Getter
+    private BetterVariableMap data;
 
-    public Anvil(){
+    public Anvil() {
+        this(null, null);
+    }
+
+    public Anvil(String id, BetterVariableMap data) {
+        this.id = id;
+        this.data = data;
         this.builder = new AnvilGUI.Builder();
         this.text = "Input Text";
         this.title = "Anvil Title";

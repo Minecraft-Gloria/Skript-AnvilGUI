@@ -118,6 +118,17 @@
             <version>RELEASE</version>
             <scope>compile</scope>
         </dependency>
+        <dependency>
+            <groupId>me.marquez</groupId>
+            <artifactId>variablelink-api</artifactId>
+            <version>1.0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>me.marquez</groupId>
+            <artifactId>variablelink-skriptaddon</artifactId>
+            <version>1.0.1</version>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
 
 </project>

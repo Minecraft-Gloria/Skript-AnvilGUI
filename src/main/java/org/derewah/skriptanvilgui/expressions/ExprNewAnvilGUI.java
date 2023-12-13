@@ -6,6 +6,7 @@ import ch.njol.skript.lang.ExpressionType;
 import ch.njol.skript.lang.SkriptParser.ParseResult;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
+import me.marquez.variablelink.api.data.BetterVariableMap;
 import org.bukkit.event.Event;
 import org.derewah.skriptanvilgui.anvilgui.Anvil;
 
@@ -15,13 +16,16 @@ public class ExprNewAnvilGUI extends SimpleExpression<Anvil> {
     static {
         Skript.registerExpression(ExprNewAnvilGUI.class, Anvil.class, ExpressionType.SIMPLE,
                 "[a] new anvil gui",
-                "[a] new anvil gui (named|with title) %string% with [default] text %string%"
+                "[a] new anvil gui (named|with title) %string% with [default] text %string%",
+                "[a] new anvil gui with id %string% with data %object%"
                 );
     }
 
 
     private Expression<String> exprTitle;
     private Expression<String> exprText;
+    private Expression<String> exprId;
+    private Expression<BetterVariableMap> exprData;
     private boolean prebuild = false;
 
     public boolean init(Expression<?>[] expression, int matchedPattern, Kleenean isDelayed, ParseResult parseResult) {
@@ -29,21 +33,30 @@ public class ExprNewAnvilGUI extends SimpleExpression<Anvil> {
             prebuild = true;
             exprTitle = (Expression<String>) expression[0];
             exprText = (Expression<String>) expression[1];
+        }else if(matchedPattern == 2) {
+            exprId = (Expression<String>) expression[0];
+            exprData = (Expression<BetterVariableMap>) expression[1];
         }
         return true;
     }
 
     @Override
     protected Anvil[] get(Event event){
-        Anvil anvil = new Anvil();
-        if(prebuild){
-            String text = exprText.getSingle(event);
-            String title = exprTitle.getSingle(event);
-            if(title != null && text != null){
-                anvil.setTitle(title);
-                anvil.setText(text);
+        Anvil anvil;
+        if(exprId == null) {
+            anvil = new Anvil();
+            if (prebuild) {
+                String text = exprText.getSingle(event);
+                String title = exprTitle.getSingle(event);
+                if (title != null && text != null) {
+                    anvil.setTitle(title);
+                    anvil.setText(text);
+                }
             }
+        }else {
+            anvil = new Anvil(exprId.getSingle(event), exprData.getSingle(event));
         }
+
         return new Anvil[]{anvil};
     }
 
