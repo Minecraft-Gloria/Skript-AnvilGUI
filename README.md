@@ -1,6 +1,6 @@
 # Gloria Custom Syntax
 ```
-[a] new anvil gui with id %string% with data %object%
+[a] new anvil gui with id %string% [with data %object%]
 ```
 ```
 anvil gui click (on|of|in|at) %string%

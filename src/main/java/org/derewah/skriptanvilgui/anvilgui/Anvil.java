@@ -1,7 +1,7 @@
 package org.derewah.skriptanvilgui.anvilgui;
 
 import lombok.Getter;
-import me.marquez.variablelink.api.data.BetterVariableMap;
+import me.marquez.skriptvariablelink.data.VariableMap;
 import net.wesjd.anvilgui.AnvilGUI;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -27,15 +27,15 @@ public class Anvil {
     @Getter
     private String id;
     @Getter
-    private BetterVariableMap data;
+    private VariableMap data;
 
     public Anvil() {
         this(null, null);
     }
 
-    public Anvil(String id, BetterVariableMap data) {
+    public Anvil(String id, VariableMap data) {
         this.id = id;
-        this.data = data;
+        this.data = data == null ? VariableMap.emptyMap() : data;
         this.builder = new AnvilGUI.Builder();
         this.text = "Input Text";
         this.title = "Anvil Title";
