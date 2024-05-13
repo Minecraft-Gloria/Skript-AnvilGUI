@@ -1,3 +1,5 @@
+forked from [DereWah/Skript-AnvilGUI](https://github.com/DereWah/Skript-AnvilGUI)
+
 # Gloria Custom Syntax
 ```
 [a] new anvil gui with id %string% [with data %object%]
